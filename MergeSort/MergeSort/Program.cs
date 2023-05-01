@@ -1,5 +1,5 @@
-﻿using System.Diagnostics;
-
+﻿using MPI;
+using System.Diagnostics;
 
 namespace MergeSort
 {
@@ -7,16 +7,17 @@ namespace MergeSort
     {
         static void Main(string[] args)
         {
-            int[] arr = { 9, 5, 1, 8, 2, 7, 3, 6, 4 };
-            //int[] arr = new int[1000];
-            //Random rand = new Random();
-            //for (int i = 0; i < arr.Length; i++)
-            //{
-            //    arr[i] = rand.Next(1000);
-            //}
+            string filePath = "DataSet5.txt";
+            string[] stringArr = File.ReadAllText(filePath)
+                      .Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+            float[] arr = stringArr.Select(float.Parse).ToArray();
+            float[] arr1 = new float[arr.Length];
+            float[] arr2 = new float[arr.Length];
+            arr.CopyTo(arr1, 0);
+            arr.CopyTo(arr2, 0);
 
             Console.WriteLine("Array before sorting:");
-            foreach (int num in arr)
+            foreach (float num in arr)
             {
                 Console.Write(num + " ");
             }
@@ -26,18 +27,48 @@ namespace MergeSort
             MergeSort.Sort(arr);
             stopwatch.Stop();
 
-            Console.WriteLine("Array after sorting:");
-            foreach (int num in arr)
+            Console.WriteLine("Array was sorted using MergeSort:");
+            foreach (float num in arr)
             {
                 Console.Write(num + " ");
             }
             Console.WriteLine();
             Console.WriteLine("Stopwatch time taken: " + stopwatch.Elapsed.TotalMilliseconds + " ms");
 
+            Stopwatch stopwatch1 = Stopwatch.StartNew();
+            ParallelMergeSortLinq.Sort(arr1);
+            stopwatch1.Stop();
+
+            Console.WriteLine("Array was sorted using ParallelMergeSortLINQ:");
+            foreach (float num in arr1)
+            {
+                Console.Write(num + " ");
+            }
+            Console.WriteLine();
+            Console.WriteLine("Stopwatch time taken: " + stopwatch1.Elapsed.TotalMilliseconds + " ms");
+
+            int rank, size;
+            using (new MPI.Environment(ref args))
+            {
+                rank = Communicator.world.Rank;
+                size = Communicator.world.Size;
+
+                Stopwatch stopwatch2 = Stopwatch.StartNew();
+                ParallelMergeSortMPI.Sort(arr2, rank, size);
+                stopwatch2.Stop();
+
+                if (rank == 0)
+                {
+                    Console.WriteLine("Array was sorted using ParallelMergeSortMPI:");
+                    foreach (float num in arr2)
+                    {
+                        Console.Write(num + " ");
+                    }
+                    Console.WriteLine();
+                    Console.WriteLine("Stopwatch time taken: " + stopwatch2.Elapsed.TotalMilliseconds + " ms");
+                }
+            }
         }
+
     }
 }
-
-
-
-

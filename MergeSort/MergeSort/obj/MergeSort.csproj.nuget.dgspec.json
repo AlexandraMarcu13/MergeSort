@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Alexandra\\Desktop\\MergeSort\\MergeSort\\MergeSort.csproj": {}
+    "C:\\Users\\Alexandra\\Documents\\GitHub\\MergeSort\\MergeSort\\MergeSort\\MergeSort.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Alexandra\\Desktop\\MergeSort\\MergeSort\\MergeSort.csproj": {
+    "C:\\Users\\Alexandra\\Documents\\GitHub\\MergeSort\\MergeSort\\MergeSort\\MergeSort.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Alexandra\\Desktop\\MergeSort\\MergeSort\\MergeSort.csproj",
+        "projectUniqueName": "C:\\Users\\Alexandra\\Documents\\GitHub\\MergeSort\\MergeSort\\MergeSort\\MergeSort.csproj",
         "projectName": "MergeSort",
-        "projectPath": "C:\\Users\\Alexandra\\Desktop\\MergeSort\\MergeSort\\MergeSort.csproj",
+        "projectPath": "C:\\Users\\Alexandra\\Documents\\GitHub\\MergeSort\\MergeSort\\MergeSort\\MergeSort.csproj",
         "packagesPath": "C:\\Users\\Alexandra\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Alexandra\\Desktop\\MergeSort\\MergeSort\\obj\\",
+        "outputPath": "C:\\Users\\Alexandra\\Documents\\GitHub\\MergeSort\\MergeSort\\MergeSort\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Alexandra\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -39,6 +39,12 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
+          "dependencies": {
+            "MPI.NET": {
+              "target": "Package",
+              "version": "[1.4.0, )"
+            }
+          },
           "imports": [
             "net461",
             "net462",
@@ -55,7 +61,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.102\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.202\\RuntimeIdentifierGraph.json"
         }
       }
     }

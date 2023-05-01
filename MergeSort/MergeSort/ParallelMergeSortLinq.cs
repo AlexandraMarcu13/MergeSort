@@ -1,6 +1,6 @@
 ﻿namespace MergeSort
 {
-    class MergeSort
+    class ParallelMergeSortLinq
     {
         public static void Sort(float[] arr)
         {
@@ -8,8 +8,10 @@
             int mid = arr.Length / 2;
             float[] left = arr.Take(mid).ToArray();
             float[] right = arr.Skip(mid).ToArray();
-            Sort(left); // Recursively sort left half
-            Sort(right); // Recursively sort right half
+            Parallel.Invoke(
+                () => Sort(left), // Recursively sort left half in parallel
+                () => Sort(right) // Recursively sort right half in parallel
+            );
             Merge(arr, left, right); // Merge sorted halves
         }
 
@@ -36,6 +38,6 @@
                 arr[k++] = right[j++];
             }
         }
-    }
 
+    }
 }
