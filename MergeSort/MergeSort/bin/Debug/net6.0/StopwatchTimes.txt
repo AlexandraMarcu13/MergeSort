@@ -1,0 +1,3 @@
+Stopwatch time taken for MergeSort: 1,8034 ms
+Stopwatch time taken for ParallelMergeSortLinq: 27,4735 ms
+Stopwatch time taken for ParallelMergeSortMPI: 20,3551 ms

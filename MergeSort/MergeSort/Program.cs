@@ -67,7 +67,14 @@ namespace MergeSort
                     Console.WriteLine();
                     Console.WriteLine("Stopwatch time taken: " + stopwatch2.Elapsed.TotalMilliseconds + " ms");
                 }
+                using (StreamWriter writer = new StreamWriter("StopwatchTimes.txt"))
+                {
+                writer.WriteLine("Stopwatch time taken for MergeSort: " + stopwatch.Elapsed.TotalMilliseconds + " ms");
+                writer.WriteLine("Stopwatch time taken for ParallelMergeSortLinq: " + stopwatch1.Elapsed.TotalMilliseconds + " ms");
+                writer.WriteLine("Stopwatch time taken for ParallelMergeSortMPI: " + stopwatch2.Elapsed.TotalMilliseconds + " ms");
+                }
             }
+            
         }
 
     }
